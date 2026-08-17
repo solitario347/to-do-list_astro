@@ -2,32 +2,93 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Inicio - Sistema de Gestión de Citas">
-    <main class="flex flex-col items-center justify-center min-h-screen px-4 text-center">
-        <div class="max-w-2xl space-y-6">
-            <span class="px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-                Sistema Profesional
-            </span>
-            <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-gray-900">
-                Gestión Inteligente de Citas para tu Empresa
-            </h1>
-            <p class="text-lg text-gray-600">
-                Administra tu agenda, optimiza el tiempo de tus clientes y controla los roles de acceso de manera eficiente.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a 
-                    href="/login" 
-                    class="px-6 py-3 font-medium text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 transition"
-                >
-                    Iniciar Sesión
-                </a>
-                <a 
-                    href="/dashboard" 
-                    class="px-6 py-3 font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition"
-                >
-                    Ver Dashboard (Demo)
-                </a>
-            </div>
-        </div>
-    </main>
+<Layout title="Gestión de Citas - Inicio">
+  <main class="hero-container">
+    <div class="hero-card">
+      <span class="badge">Sistema Profesional</span>
+      <h1>Gestión Inteligente de Citas para tu Empresa</h1>
+      <p>Administra tu agenda, optimiza el tiempo de tus clientes y controla los roles de acceso de manera eficiente.</p>
+      
+      <div class="actions">
+        <a href="/login" class="btn btn-primary">Iniciar Sesión</a>
+        <a href="/dashboard" class="btn btn-secondary">Ver Dashboard (Demo)</a>
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  .hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .hero-card {
+    max-width: 650px;
+    background: #1e1e2e;
+    color: #f8f8f2;
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid #313244;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .badge {
+    background: #313244;
+    color: #cba6f7;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 1.2rem 0 0.8rem;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  p {
+    color: #a6adc8;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    text-decoration: none;
+    padding: 0.8rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #89b4fa;
+    color: #11111b;
+  }
+
+  .btn-primary:hover {
+    background: #b4befe;
+  }
+
+  .btn-secondary {
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+  }
+
+  .btn-secondary:hover {
+    background: #45475a;
+  }
+</style>

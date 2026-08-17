@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const citas = [
+  { id: 1, servicio: 'Soporte Técnico', fecha: '2026-08-20', hora: '10:00 AM', estado: 'Confirmada' },
+  { id: 2, servicio: 'Asesoría Comercial', fecha: '2026-08-25', hora: '03:00 PM', estado: 'Pendiente' },
+];
+---
+
+<Layout title="Dashboard - Mis Citas">
+  <main class="dashboard">
+    <header>
+      <div>
+        <h1>Mis Citas</h1>
+        <p>Gestiona tus solicitudes agendadas</p>
+      </div>
+      <a href="/agendar" class="btn">+ Nueva Cita</a>
+    </header>
+
+    <div class="grid">
+      {citas.map(c => (
+        <div class="card">
+          <h3>{c.servicio}</h3>
+          <p>📅 {c.fecha} - ⏰ {c.hora}</p>
+          <span class={`tag ${c.estado.toLowerCase()}`}>{c.estado}</span>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .dashboard { max-width: 900px; margin: 3rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; color: #f8f8f2; }
+  header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  h1 { margin: 0; color: #fff; }
+  p { color: #a6adc8; margin: 0.3rem 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .card { background: #1e1e2e; padding: 1.5rem; border-radius: 10px; border: 1px solid #313244; }
+  .tag { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-top: 1rem; }
+  .confirmada { background: #a6e3a1; color: #11111b; }
+  .pendiente { background: #f9e2af; color: #11111b; }
+  .btn { background: #89b4fa; color: #11111b; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: bold; }
+</style>

@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const citasAdmin = [
+  { id: '#101', cliente: 'Carlos Gómez', servicio: 'Soporte Técnico', fecha: '2026-08-17 09:00 AM', estado: 'Pendiente' },
+  { id: '#102', cliente: 'María Rodríguez', servicio: 'Consultoría', fecha: '2026-08-18 02:00 PM', estado: 'Confirmada' },
+  { id: '#103', cliente: 'Andrés López', servicio: 'Atención al Cliente', fecha: '2026-08-19 11:30 AM', estado: 'Cancelada' },
+];
+---
+
+<Layout title="Panel de Administración">
+  <main class="admin-container">
+    <header class="header">
+      <div>
+        <h1>Panel Administrativo</h1>
+        <p>Control centralizado de citas y solicitudes</p>
+      </div>
+      <a href="/login" class="btn-logout">Cerrar Sesión</a>
+    </header>
+
+    <div class="table-card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Servicio</th>
+            <th>Fecha y Hora</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {citasAdmin.map(cita => (
+            <tr>
+              <td class="code">{cita.id}</td>
+              <td class="name">{cita.cliente}</td>
+              <td>{cita.servicio}</td>
+              <td>{cita.fecha}</td>
+              <td>
+                <span class={`badge ${cita.estado.toLowerCase()}`}>{cita.estado}</span>
+              </td>
+              <td class="actions">
+                <button class="action-btn approve">✓</button>
+                <button class="action-btn reject">✕</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .admin-container { max-width: 1000px; margin: 3rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; color: #f8f8f2; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  h1 { margin: 0; color: #fff; }
+  p { color: #a6adc8; margin: 0.3rem 0 0; }
+  .table-card { background: #1e1e2e; border-radius: 12px; border: 1px solid #313244; overflow: hidden; }
+  .data-table { width: 100%; border-collapse: collapse; text-align: left; }
+  th, td { padding: 1rem 1.2rem; border-bottom: 1px solid #313244; font-size: 0.9rem; }
+  th { background: #181825; color: #cdd6f4; font-weight: 600; }
+  .code { font-family: monospace; color: #cba6f7; }
+  .name { font-weight: 600; color: #fff; }
+  .badge { padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+  .confirmada { background: #a6e3a1; color: #11111b; }
+  .pendiente { background: #f9e2af; color: #11111b; }
+  .cancelada { background: #f38ba8; color: #11111b; }
+  .actions { display: flex; gap: 0.5rem; }
+  .action-btn { border: none; padding: 0.4rem 0.7rem; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .approve { background: #a6e3a1; color: #11111b; }
+  .reject { background: #f38ba8; color: #11111b; }
+  .btn-logout { background: #313244; color: #f38ba8; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; border: 1px solid #45475a; }
+</style>
