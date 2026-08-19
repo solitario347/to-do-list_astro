@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const citasAdmin = [
+// Citas iniciales de ejemplo
+const citasBase = [
   { id: '#101', cliente: 'Carlos Gómez', servicio: 'Soporte Técnico', fecha: '2026-08-17 09:00 AM', estado: 'Pendiente' },
   { id: '#102', cliente: 'María Rodríguez', servicio: 'Consultoría', fecha: '2026-08-18 02:00 PM', estado: 'Confirmada' },
   { id: '#103', cliente: 'Andrés López', servicio: 'Atención al Cliente', fecha: '2026-08-19 11:30 AM', estado: 'Cancelada' },
 ];
+
 ---
 
 <Layout title="Panel de Administración">
@@ -15,7 +17,7 @@ const citasAdmin = [
         <h1>Panel Administrativo</h1>
         <p>Control centralizado de citas y solicitudes</p>
       </div>
-      <a href="/login" class="btn-logout">Cerrar Sesión</a>
+      <a href="/login" class="btn-logout" id="logoutBtn">Cerrar Sesión</a>
     </header>
 
     <div class="table-card">
@@ -30,8 +32,8 @@ const citasAdmin = [
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          {citasAdmin.map(cita => (
+        <tbody id="tablaCitas">
+          {citasBase.map(cita => (
             <tr>
               <td class="code">{cita.id}</td>
               <td class="name">{cita.cliente}</td>
@@ -73,3 +75,20 @@ const citasAdmin = [
   .reject { background: #f38ba8; color: #11111b; }
   .btn-logout { background: #313244; color: #f38ba8; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; border: 1px solid #45475a; }
 </style>
+
+<script>
+ 
+ // Protección de ruta y rol
+  const role = localStorage.getItem('userRole');
+  if (!role) window.location.href = '/login';
+  if (role !== 'admin') window.location.href = '/dashboard';
+
+  // Logout
+  const logoutBtn = document.getElementById('logoutBtn');
+  logoutBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('userRole');
+    window.location.href = '/login';
+  });
+
+</script>

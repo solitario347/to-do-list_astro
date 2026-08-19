@@ -41,3 +41,18 @@ const citas = [
   .pendiente { background: #f9e2af; color: #11111b; }
   .btn { background: #89b4fa; color: #11111b; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: bold; }
 </style>
+
+<script>
+  const role = localStorage.getItem('userRole');
+  const path = window.location.pathname;
+
+  // Si no hay sesión, al login
+  if (!role) {
+    window.location.href = '/login';
+  }
+
+  // Protección de rutas: Si es cliente, no puede entrar a admin
+  if (role === 'cliente' && path.includes('admin')) {
+    window.location.href = '/login';
+  }
+</script>

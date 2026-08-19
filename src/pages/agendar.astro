@@ -58,3 +58,30 @@ import Layout from '../layouts/Layout.astro';
   .btn-primary { background: #89b4fa; color: #11111b; }
   .btn-secondary { background: #313244; color: #cdd6f4; border: 1px solid #45475a; }
 </style>
+
+<script>
+  const form = document.getElementById('bookingForm') as HTMLFormElement;
+  
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const servicioSelect = form.querySelector('select') as HTMLSelectElement;
+    const fechaInput = form.querySelector('input[type="date"]') as HTMLInputElement;
+    const horaInput = form.querySelector('input[type="time"]') as HTMLInputElement;
+
+    const nuevaCita = {
+      id: '#' + Math.floor(100 + Math.random() * 900),
+      cliente: 'Cliente Actual',
+      servicio: servicioSelect?.options[servicioSelect.selectedIndex]?.text || 'Servicio General',
+      fecha: `${fechaInput?.value} ${horaInput?.value}`,
+      estado: 'Pendiente'
+    };
+
+    const citasGuardadas = JSON.parse(localStorage.getItem('citasEmpresa') || '[]');
+    citasGuardadas.push(nuevaCita);
+    localStorage.setItem('citasEmpresa', JSON.stringify(citasGuardadas));
+
+    alert('¡Cita agendada con éxito!');
+    window.location.href = '/dashboard';
+  });
+</script>
